@@ -8,7 +8,7 @@ const NavigationBar = () => {
 
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Navbar.Brand href="#home">Music Player</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
