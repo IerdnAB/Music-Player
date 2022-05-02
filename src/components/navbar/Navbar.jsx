@@ -1,6 +1,8 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Navbar.css";
+import { BsFillMusicPlayerFill } from 'react-icons/bs';
+import pic from '../../images/music-player-bg.jpg';
 
 
 const NavigationBar = () => {
@@ -8,7 +10,9 @@ const NavigationBar = () => {
 
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="#home">Music Player</Navbar.Brand>
+                <Navbar.Brand href="#home">
+                    <BsFillMusicPlayerFill/>
+                    Music Player</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
