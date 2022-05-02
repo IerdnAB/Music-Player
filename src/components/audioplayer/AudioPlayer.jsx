@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { MdSkipPrevious } from 'react-icons/md';
 import { MdSkipNext } from 'react-icons/md';
 import { MdPlayCircleFilled } from 'react-icons/md';
 import { MdPauseCircle } from 'react-icons/md';
 import './AudioPlayer.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import { listRef, listAll, getDownloadURL } from '../../firebase/firebase'
 
@@ -66,48 +66,51 @@ const AudioPlayer = () => {
         setIsPlaying(!isPlaying);
     }
 
-    const handleSelectTrack = (index) => {
+    const handleSelectTrack = useCallback((index) => {
         setSelectedTrack(index)
-    }
+    }, [])
 
-    const handlePrevTrack = () => {
+    const handlePrevTrack = useCallback(() => {
         if (selectedTrack === 0) return;
         setSelectedTrack(state => state - 1);
-    }
+    }, [])
 
-    const handleNextTrack = () => {
+    const handleNextTrack = useCallback(() => {
         if (selectedTrack === data.length - 1) return;
         setSelectedTrack(state => state + 1);
-    }
+    },[])
 
-    const changeRange = (e) => {
+    const changeRange = useCallback((e) => {
         playerRef.current.currentTime = e.target.value;
         setCurrentTime(e.target.value);
-    }
+    },[])
 
-    const handlePlayProgress = () => {
+    const handlePlayProgress = useCallback(() => {
         const currentTimeSeconds = Math.floor(playerRef.current.currentTime)
         const durationSeconds = Math.floor(playerRef.current.duration)
         setDuration(durationSeconds);
         setCurrentTime(currentTimeSeconds);
-    }
+    },[])
 
     //playerRef.current.volume
     //playerRef.current.mute
 
+
     return (
         <div className='audio-player'>
             <div className="displayer">
-                <ul className="list-song">
-                    {data.map((val, index) => (
-                        <li className="songs"
-                            key={val.name}
-                            onClick={() => handleSelectTrack(index)}
-                            style={{ color: selectedTrack === index ? 'blue' : 'initial' }}>
-                            {val.name}
-                        </li>
-                    ))}
-                </ul>
+                <div className="scroll-list">
+                    <ul className="list-song">
+                        {data.map((val, index) => (
+                            <li className="songs"
+                                key={val.name}
+                                onClick={() => handleSelectTrack(index)}
+                                style={{ color: selectedTrack === index ? '#742C9C' : 'initial' }}>
+                                {val.name.split(".")[0]}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
 
             <div className="middle-part">
