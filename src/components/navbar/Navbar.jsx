@@ -19,7 +19,6 @@ const NavigationBar = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/wikisearch">Wiki</Nav.Link>
                         <Nav.Link href="#about">About the developer</Nav.Link>
-                        <Nav.Link href="#cv">Developer CV</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
