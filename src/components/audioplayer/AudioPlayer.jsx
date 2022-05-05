@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MdSkipPrevious } from 'react-icons/md';
 import { MdSkipNext } from 'react-icons/md';
 import { MdPlayCircleFilled } from 'react-icons/md';
 import { MdPauseCircle } from 'react-icons/md';
+import { BsQuestionSquareFill } from 'react-icons/bs'
 import './AudioPlayer.css';
 
 
@@ -17,7 +19,7 @@ const AudioPlayer = () => {
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
 
-
+    const navigate = useNavigate();
 
     const playerRef = useRef();
 
@@ -78,64 +80,66 @@ const AudioPlayer = () => {
     const handleNextTrack = useCallback(() => {
         if (selectedTrack === data.length - 1) return;
         setSelectedTrack(state => state + 1);
-    },[])
+    }, [])
 
     const changeRange = useCallback((e) => {
         playerRef.current.currentTime = e.target.value;
         setCurrentTime(e.target.value);
-    },[])
+    }, [])
 
     const handlePlayProgress = useCallback(() => {
         const currentTimeSeconds = Math.floor(playerRef.current.currentTime)
         const durationSeconds = Math.floor(playerRef.current.duration)
         setDuration(durationSeconds);
         setCurrentTime(currentTimeSeconds);
-    },[])
+    }, [])
 
-    //playerRef.current.volume
-    //playerRef.current.mute
 
+
+    const handleRedirectToWiki = useCallback((data, index) => {
+        const wikiQuery = data[index].name.split('-')[0]
+        navigate(`/wikisearch?q=${wikiQuery}`)
+    }, [])
 
     return (
-        <div className='audio-player'>
-            <div className="displayer">
-                <div className="scroll-list">
-                    <ul className="list-song">
-                        {data.map((val, index) => (
-                            <li className="songs"
-                                key={val.name}
-                                onClick={() => handleSelectTrack(index)}
-                                style={{ color: selectedTrack === index ? '#742C9C' : 'initial' }}>
-                                {val.name.split(".")[0]}
-                            </li>
-                        ))}
-                    </ul>
+        <>
+            <div className='audio-player'>
+                <div className="displayer">
+                    <div className="scroll-list">
+                        <ul className="list-song">
+                            {data.map((val, index) => (
+                                <li className="songs"
+                                    key={val.name}
+                                    onClick={() => handleSelectTrack(index)}
+                                    style={{ color: selectedTrack === index ? '#742C9C' : 'initial' }}>
+                                    {val.name.split(".")[0]}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
+                    <button className="info-btn" onClick={() => handleRedirectToWiki(data, selectedTrack)}><BsQuestionSquareFill /></button>
+                <div className="middle-part">
+                    <button className="forwardBackward" id="previous-botton" onClick={handlePrevTrack} disabled={selectedTrack === 0}><MdSkipPrevious /></button>
+                    <button className="playPause" id="play-button" onClick={togglePlayPause}> {isPlaying ? <MdPlayCircleFilled /> : <MdPauseCircle />}</button>
+                    <button className="forwardBackward" id="skip-button" onClick={handleNextTrack} disabled={selectedTrack === data.length - 1}><MdSkipNext /></button>
+                </div>
+                <div className="duration">
+                    <div className="durationTime">{calculatedTime(currentTime)}</div>
+                    <input type="range" min="0" max={isNaN(duration) ? 0 : duration} id="song-duration" step="0.1" value={currentTime} onChange={changeRange} />
+                    <div className="durationTime">{!isNaN(duration) && calculatedTime(duration)}</div>
+
+                </div>
+                <audio
+                    ref={playerRef}
+                    src={data.length > 0 ? data[selectedTrack].downloadURL : null}
+                    onTimeUpdate={handlePlayProgress}
+                >
+                </audio>
+
             </div>
 
-            <div className="middle-part">
-                <button className="forwardBackward" id="previous-botton" onClick={handlePrevTrack} disabled={selectedTrack === 0}><MdSkipPrevious /></button>
-                <button className="playPause" id="play-button" onClick={togglePlayPause}> {isPlaying ? <MdPlayCircleFilled /> : <MdPauseCircle />}</button>
-                <button className="forwardBackward" id="skip-button" onClick={handleNextTrack} disabled={selectedTrack === data.length - 1}><MdSkipNext /></button>
-            </div>
-            <div className="duration">
-                <div className="durationTime">{calculatedTime(currentTime)}</div>
-                <input type="range" min="0" max={isNaN(duration) ? 0 : duration} id="song-duration" step="0.1" value={currentTime} onChange={changeRange} />
-                <div className="durationTime">{!isNaN(duration) && calculatedTime(duration)}</div>
-
-            </div>
-            <audio
-                ref={playerRef}
-                src={data.length > 0 ? data[selectedTrack].downloadURL : null}
-                onTimeUpdate={handlePlayProgress}
-            >
-            </audio>
-
-
-
-
-
-        </div>
+        </>
     )
 }
 

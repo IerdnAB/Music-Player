@@ -1,0 +1,18 @@
+.cv-button{
+    color:white;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+p{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.offcanvas-body{
+    display:flex;
+    flex-direction: column;
+}

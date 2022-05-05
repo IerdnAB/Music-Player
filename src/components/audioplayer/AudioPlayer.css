@@ -34,6 +34,8 @@
 
 
 
+
+
 ::-webkit-scrollbar {
     width: 0.5rem;
 }
@@ -66,7 +68,6 @@
 
 .duration {
 
-    margin-top: 15px;
     display: flex;
     width: 75%;
     align-items: center;
@@ -119,6 +120,8 @@ ul {
     font-family: 'Ubuntu', sans-serif;
 }
 
+
+
 li {
     text-align: center;
     font-size: 15px;
@@ -129,3 +132,13 @@ li:hover {
     color: rgb(222, 62, 13);
     cursor: pointer;
 }
+
+.info-btn{
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+    cursor: pointer;
+}
+
