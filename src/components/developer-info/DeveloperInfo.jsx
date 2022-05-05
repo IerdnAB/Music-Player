@@ -32,12 +32,13 @@ function Example() {
       </button>
 
       <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
+        {/* <Offcanvas.Header closeButton>
           <Offcanvas.Title>Andrei Bumbea - Junior React Developer</Offcanvas.Title>
-        </Offcanvas.Header>
+        </Offcanvas.Header> */}
         <Offcanvas.Body>
+        <Offcanvas.Title>Andrei Bumbea - Junior React Developer</Offcanvas.Title>
           <p>A software developer passionately opened for a new professional challenge and ready to take on responsibilities. Reliable team member always ready to help. Quick learner with problem-solving and decision-making mindset, and excellent interpersonal skills.</p>
-          <Button variant="info" href={cv}>CV</Button>
+          <Button variant="dark" href={cv}>CV</Button>
         </Offcanvas.Body>
       </Offcanvas>
     </>
