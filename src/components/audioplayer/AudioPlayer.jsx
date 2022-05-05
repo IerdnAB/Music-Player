@@ -4,7 +4,7 @@ import { MdSkipPrevious } from 'react-icons/md';
 import { MdSkipNext } from 'react-icons/md';
 import { MdPlayCircleFilled } from 'react-icons/md';
 import { MdPauseCircle } from 'react-icons/md';
-import { BsQuestionSquareFill } from 'react-icons/bs'
+import { SiWikipedia } from 'react-icons/si'
 import './AudioPlayer.css';
 
 
@@ -118,7 +118,7 @@ const AudioPlayer = () => {
                         </ul>
                     </div>
                 </div>
-                    <button className="info-btn" onClick={() => handleRedirectToWiki(data, selectedTrack)}><BsQuestionSquareFill /></button>
+                    <button className="info-btn" onClick={() => handleRedirectToWiki(data, selectedTrack)}><SiWikipedia /></button>
                 <div className="middle-part">
                     <button className="forwardBackward" id="previous-botton" onClick={handlePrevTrack} disabled={selectedTrack === 0}><MdSkipPrevious /></button>
                     <button className="playPause" id="play-button" onClick={togglePlayPause}> {isPlaying ? <MdPlayCircleFilled /> : <MdPauseCircle />}</button>

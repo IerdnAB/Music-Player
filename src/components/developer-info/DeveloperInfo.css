@@ -25,3 +25,12 @@ p {
     padding: 1rem;
     margin-bottom: 3rem;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color:white;
+}
