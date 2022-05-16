@@ -25,37 +25,7 @@ function Example() {
       // Handle any errors
     });
 
-  // const downloadFile = () => {
-  //   fetch(cv, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/pdf',
-  //     },
-  //   })
-  //     .then((response) => response.blob())
-  //     .then((blob) => {
-  //       // Create blob link to download
-  //       const url = window.URL.createObjectURL(
-  //         new Blob([blob]),
-  //       );
-  //       const link = document.createElement('a');
-  //       link.href = url;
-  //       link.setAttribute(
-  //         'download',
-  //         `FileName.pdf`,
-  //       );
 
-  //       // Append to html link element page
-  //       document.body.appendChild(link);
-
-  //       // Start download
-  //       link.click();
-
-  //       // Clean up and remove the link
-  //       link.parentNode.removeChild(link);
-  //     });
-
-  // }
 
 
 
@@ -72,7 +42,7 @@ function Example() {
         <Offcanvas.Body>
           <Offcanvas.Title>Andrei Bumbea - Junior React Developer</Offcanvas.Title>
           <p>A software developer passionately opened for a new professional challenge and ready to take on responsibilities. Reliable team member always ready to help. Quick learner with problem-solving and decision-making mindset, and excellent interpersonal skills.</p>
-          <Button variant="dark"><a href={cv}>CV</a></Button>
+          <a href={cv} target="blank" class="cv-download">CV</a>
         </Offcanvas.Body>
       </Offcanvas>
     </>
