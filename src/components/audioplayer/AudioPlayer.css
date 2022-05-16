@@ -29,6 +29,7 @@
 }
 
 .scroll-list {
+    margin-top: 1rem;
     overflow: auto;
 }
 

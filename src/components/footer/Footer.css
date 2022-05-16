@@ -1,0 +1,9 @@
+i{
+    color:white;
+    font-size: 1.7rem;
+}
+
+.navbar .container{
+    justify-content: flex-end;
+    gap: 1rem;
+}
