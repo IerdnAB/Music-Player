@@ -28,10 +28,6 @@ function Example() {
 
 
 
-
-
-
-
   return (
     <>
       <button className="cv-button" onClick={handleShow}>

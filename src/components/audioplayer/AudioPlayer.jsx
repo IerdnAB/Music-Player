@@ -48,6 +48,8 @@ const AudioPlayer = () => {
         (playerRef.current && isPlaying) ? playerRef.current.pause() : playerRef.current.play()
     }, [isPlaying])
 
+    
+
     useEffect(() => {
         if (!isPlaying) playerRef.current.play()
     }, [selectedTrack])
@@ -61,8 +63,6 @@ const AudioPlayer = () => {
         const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
         return `${returnedMinutes}:${returnedSeconds}`;
     };
-
-
 
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying);
@@ -101,6 +101,7 @@ const AudioPlayer = () => {
         navigate(`/wikisearch?q=${wikiQuery}`)
     }, [])
 
+
     return (
         <>
             <div className='audio-player'>
@@ -136,6 +137,7 @@ const AudioPlayer = () => {
                     onTimeUpdate={handlePlayProgress}
                 >
                 </audio>
+                
 
             </div>
 
